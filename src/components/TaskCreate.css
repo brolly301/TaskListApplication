@@ -1,0 +1,25 @@
+.task-create {
+  text-align: center;
+}
+
+.task-input {
+  width: 400px;
+  height: 30px;
+  margin-top: 10px;
+}
+
+.task-button {
+  width: 410px;
+  height: 25px;
+  margin-top: 10px;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  color: white;
+  background-color: rgb(88, 163, 107);
+  border-radius: 5px;
+}
+
+h1 {
+  position: relative;
+  top: 12px;
+}

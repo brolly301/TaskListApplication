@@ -1,0 +1,28 @@
+.task-list {
+  width: 410px;
+  height: 200px;
+  margin: 0 auto;
+}
+
+.task-title {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 0px;
+}
+
+.task-section {
+  display: flex;
+  justify-content: space-around;
+  margin: 0 auto;
+  margin-top: 10px;
+}
+
+.task-section-button {
+  width: 100%;
+  background-color: rgb(129, 196, 255);
+  color: white;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  border-radius: 5px;
+  margin-left: 5px;
+}

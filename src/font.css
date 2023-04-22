@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900;1,700&display=swap");
+
+body {
+  font-family: "Roboto";
+}
+
+.task-clear {
+  width: 100%;
+  background-color: rgb(240, 65, 59);
+  color: white;
+  padding-top: 7px;
+  padding-bottom: 7px;
+  border-radius: 5px;
+  margin-left: 5px;
+}
+
+.task-clear-wrapper {
+  display: flex;
+  width: 420px;
+  margin: 0 auto;
+}
