@@ -7,7 +7,7 @@ import TaskEdit from "./TaskEdit";
 import { useState } from "react";
 import "./TaskShow.css";
 
-export default function TaskShow({ task, onDelete, onEdit }) {
+export default function TaskShow({ task, onDelete, onEdit, onComplete }) {
   const [showEdit, setShowEdit] = useState(false);
 
   //Calls the onDelete function when the icon is pressed
@@ -18,6 +18,10 @@ export default function TaskShow({ task, onDelete, onEdit }) {
   //Renders the TaskEdit component by flipping state
   const handleEdit = () => {
     setShowEdit(!showEdit);
+  };
+
+  const handleCheck = () => {
+    onComplete(task.id, task.title, !task.completed);
   };
 
   //Sets edit page to false when title is changed, passed through to TaskEdit
@@ -34,7 +38,7 @@ export default function TaskShow({ task, onDelete, onEdit }) {
 
   return (
     <div className="task-content">
-      <MdCheckCircleOutline className="task-complete" />
+      <MdCheckCircleOutline className="task-complete" onClick={handleCheck} />
       {content}
       <div className="task-icons">
         <MdEditNote className="task-edit" onClick={handleEdit} />

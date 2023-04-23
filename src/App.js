@@ -6,12 +6,23 @@ import "./font.css";
 function App() {
   const [tasks, setTasks] = useState([]);
 
+  const completeTaskById = (id, title, completed) => {
+    const completedTasks = tasks.map((task) => {
+      if (task.id === id) {
+        return { id, title, completed: completed };
+      }
+      return task;
+    });
+    setTasks(completedTasks);
+  };
+
   const createTasks = (title) => {
     const newTasks = [
       ...tasks,
       {
         id: Math.floor(Math.random() * 9999),
         title,
+        completed: false,
       },
     ];
     setTasks(newTasks);
@@ -43,7 +54,12 @@ function App() {
   return (
     <div className="App">
       <TaskCreate onCreate={createTasks} />
-      <TaskList tasks={tasks} onDelete={deleteTaskById} onEdit={editTaskById} />
+      <TaskList
+        tasks={tasks}
+        onDelete={deleteTaskById}
+        onEdit={editTaskById}
+        onComplete={completeTaskById}
+      />
       <div className="task-clear-wrapper">
         <button onClick={handleClick} className="task-clear">
           Clear Tasks
