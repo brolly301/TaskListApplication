@@ -14,6 +14,7 @@ function App() {
       return task;
     });
     setTasks(completedTasks);
+    console.log(tasks);
   };
 
   const createTasks = (title) => {
@@ -60,11 +61,6 @@ function App() {
         onEdit={editTaskById}
         onComplete={completeTaskById}
       />
-      <div className="task-clear-wrapper">
-        <button onClick={handleClick} className="task-clear">
-          Clear Tasks
-        </button>
-      </div>
     </div>
   );
 }
