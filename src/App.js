@@ -47,10 +47,8 @@ function App() {
     setTasks(updatedTasks);
   };
 
-  const handleClick = () => {
-    const updatedTasks = [];
-    setTasks(updatedTasks);
-  };
+  const completedTasks = tasks.filter((task) => task.completed);
+  console.log(completedTasks);
 
   return (
     <div className="App">
@@ -60,6 +58,7 @@ function App() {
         onDelete={deleteTaskById}
         onEdit={editTaskById}
         onComplete={completeTaskById}
+        completedTasks={completedTasks}
       />
     </div>
   );
