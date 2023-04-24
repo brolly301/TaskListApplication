@@ -47,8 +47,16 @@ function App() {
     setTasks(updatedTasks);
   };
 
-  const completedTasks = tasks.filter((task) => task.completed);
-  console.log(completedTasks);
+  const handleClearAllTasks = () => {
+    setTasks([]);
+  };
+
+  const handleClearCompletedTasks = (id) => {
+    const updatedTasks = tasks.filter((task) => {
+      return task.id !== id;
+    });
+    setTasks(updatedTasks);
+  };
 
   return (
     <div className="App">
@@ -58,7 +66,8 @@ function App() {
         onDelete={deleteTaskById}
         onEdit={editTaskById}
         onComplete={completeTaskById}
-        completedTasks={completedTasks}
+        onClear={handleClearAllTasks}
+        onClearComplete={handleClearCompletedTasks}
       />
     </div>
   );

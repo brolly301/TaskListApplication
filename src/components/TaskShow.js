@@ -2,6 +2,7 @@ import {
   MdDeleteForever,
   MdEditNote,
   MdCheckCircleOutline,
+  MdCancel,
 } from "react-icons/md";
 import TaskEdit from "./TaskEdit";
 import { useState } from "react";
@@ -20,6 +21,7 @@ export default function TaskShow({ task, onDelete, onEdit, onComplete }) {
     setShowEdit(!showEdit);
   };
 
+  //Marks the specific task as completed
   const handleCheck = () => {
     onComplete(task.id, task.title, !task.completed);
   };
@@ -37,10 +39,19 @@ export default function TaskShow({ task, onDelete, onEdit, onComplete }) {
   }
 
   return (
-    <div className="task-content">
-      <MdCheckCircleOutline className="task-complete" onClick={handleCheck} />
+    //Decides on className depending on task completed status
+    <div className={task.completed ? "task-complete-content" : "task-content"}>
+      {/* Changing icon depending on task completed status  */}
+      {task.completed ? (
+        <MdCancel className="task-uncomplete" onClick={handleCheck} />
+      ) : (
+        <MdCheckCircleOutline className="task-complete" onClick={handleCheck} />
+      )}
+      {/* Setting task title heading */}
       {content}
+      {/* Handling the edit and delete buttons */}
       <div className="task-icons">
+        {task.complete}
         <MdEditNote className="task-edit" onClick={handleEdit} />
         <MdDeleteForever className="task-delete" onClick={handleDelete} />
       </div>

@@ -2,13 +2,19 @@ import TaskShow from "./TaskShow";
 import "./TaskList.css";
 import { useState } from "react";
 
-export default function TaskList({ tasks, onDelete, onEdit, onComplete }) {
-  //Using map to iterate through tasks and return a TaskShow component for each
-
+export default function TaskList({
+  tasks,
+  onDelete,
+  onEdit,
+  onComplete,
+  onClear,
+  onClearComplete,
+}) {
   const [title, setTitle] = useState("All Tasks");
   const [variable, setVariable] = useState(false);
   const [variable2, setVariable2] = useState(true);
 
+  //Using map to iterate through tasks and return a TaskShow component for each
   const allTasks = tasks.map((task) => {
     if (task.completed === variable || task.completed === variable2) {
       return (
@@ -55,6 +61,15 @@ export default function TaskList({ tasks, onDelete, onEdit, onComplete }) {
         </button>
       </div>
       <div>{allTasks}</div>
+      {tasks.length > 0 ? (
+        <div className="task-clear-wrapper">
+          <button className="task-clear" onClick={onClear}>
+            Clear Tasks
+          </button>
+        </div>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

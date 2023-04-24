@@ -12,10 +12,12 @@ body {
   padding-bottom: 7px;
   border-radius: 5px;
   margin-left: 5px;
+  margin-top: 15px;
 }
 
 .task-clear-wrapper {
   display: flex;
-  width: 420px;
+  width: 410px;
+
   margin: 0 auto;
 }
