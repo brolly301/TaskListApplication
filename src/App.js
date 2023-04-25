@@ -2,9 +2,19 @@ import { useState } from "react";
 import TaskCreate from "./components/TaskCreate";
 import TaskList from "./components/TaskList";
 import "./font.css";
+import TaskFilter from "./components/TaskFilter";
+
+const filterTypes = {
+  All: () => true,
+  Active: (task) => !task.completed,
+  Completed: (task) => task.completed,
+};
+
+const filterKeys = Object.keys(filterTypes);
 
 function App() {
   const [tasks, setTasks] = useState([]);
+  const [filter, setFilter] = useState("All");
 
   const completeTaskById = (id, title, completed) => {
     const completedTasks = tasks.map((task) => {
@@ -51,6 +61,10 @@ function App() {
     setTasks([]);
   };
 
+  const filterList = filterKeys.map((name) => {
+    return <TaskFilter className="task-section-button" />;
+  });
+
   return (
     <div className="App">
       <TaskCreate onCreate={createTasks} />
@@ -61,6 +75,7 @@ function App() {
         onComplete={completeTaskById}
         onClear={handleClearAllTasks}
       />
+      {filterList}
     </div>
   );
 }

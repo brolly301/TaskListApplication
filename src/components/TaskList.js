@@ -1,4 +1,5 @@
 import TaskShow from "./TaskShow";
+import TaskFilter from "./TaskFilter";
 import "./TaskList.css";
 import { useState } from "react";
 export default function TaskList({
@@ -60,6 +61,7 @@ export default function TaskList({
               <button className="task-clear" onClick={onClear}>
                 Clear Tasks
               </button>
+              <TaskFilter />
             </div>
           </div>
         </div>
