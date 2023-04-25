@@ -2,7 +2,6 @@ import { useState } from "react";
 import TaskCreate from "./components/TaskCreate";
 import TaskList from "./components/TaskList";
 import "./font.css";
-import TaskSearch from "./components/TaskSearch";
 
 function App() {
   const [tasks, setTasks] = useState([]);
@@ -48,13 +47,6 @@ function App() {
     setTasks(updatedTasks);
   };
 
-  const searchTaskByTitle = (searchResult) => {
-    const searchResults = tasks.filter((task) => {
-      return task.title.match(searchResult);
-    });
-    setTasks(searchResults);
-  };
-
   const handleClearAllTasks = () => {
     setTasks([]);
   };
@@ -68,7 +60,6 @@ function App() {
         onEdit={editTaskById}
         onComplete={completeTaskById}
         onClear={handleClearAllTasks}
-        onSearch={searchTaskByTitle}
       />
     </div>
   );
