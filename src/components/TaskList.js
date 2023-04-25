@@ -1,4 +1,5 @@
 import TaskShow from "./TaskShow";
+import TaskSearch from "./TaskSearch";
 import "./TaskList.css";
 import { useState } from "react";
 
@@ -8,7 +9,7 @@ export default function TaskList({
   onEdit,
   onComplete,
   onClear,
-  onClearComplete,
+  onSearch,
 }) {
   const [title, setTitle] = useState("All Tasks");
   const [variable, setVariable] = useState(false);
@@ -62,10 +63,13 @@ export default function TaskList({
       </div>
       <div>{allTasks}</div>
       {tasks.length > 0 ? (
-        <div className="task-clear-wrapper">
-          <button className="task-clear" onClick={onClear}>
-            Clear Tasks
-          </button>
+        <div>
+          <TaskSearch onSearch={onSearch} />
+          <div className="task-clear-wrapper">
+            <button className="task-clear" onClick={onClear}>
+              Clear Tasks
+            </button>
+          </div>
         </div>
       ) : (
         ""
