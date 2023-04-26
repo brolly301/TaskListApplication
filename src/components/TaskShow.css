@@ -10,7 +10,7 @@
 }
 
 .task-content:nth-of-type(even) {
-  background-color: rgba(133, 212, 226, 0.479);
+  background-color: rgba(184, 239, 248, 0.479);
 }
 
 .task-complete-content {
