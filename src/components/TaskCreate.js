@@ -12,8 +12,12 @@ export default function TaskCreate({ onCreate }) {
   //Submits the task when it is entered
   const handleSubmit = (e) => {
     e.preventDefault();
-    onCreate(taskTitle);
-    setTaskTitle("");
+    if (taskTitle.length > 0) {
+      onCreate(taskTitle);
+      setTaskTitle("");
+    } else {
+      alert("Must be longer than 1 character.");
+    }
   };
 
   return (
