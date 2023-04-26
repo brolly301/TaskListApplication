@@ -2,20 +2,12 @@ import { useState } from "react";
 import TaskCreate from "./components/TaskCreate";
 import TaskList from "./components/TaskList";
 import "./font.css";
-import TaskFilter from "./components/TaskFilter";
-
-const filterTypes = {
-  All: () => true,
-  Active: (task) => !task.completed,
-  Completed: (task) => task.completed,
-};
-
-const filterKeys = Object.keys(filterTypes);
 
 function App() {
   const [tasks, setTasks] = useState([]);
   const [filter, setFilter] = useState("All");
 
+  //Completes the task by setting the complete object variable to true
   const completeTaskById = (id, title, completed) => {
     const completedTasks = tasks.map((task) => {
       if (task.id === id) {
@@ -27,6 +19,7 @@ function App() {
     console.log(tasks);
   };
 
+  //Creates a task via the input on the TaskCreate component
   const createTasks = (title) => {
     const newTasks = [
       ...tasks,
@@ -40,6 +33,7 @@ function App() {
     console.log(tasks);
   };
 
+  //Deletes a task by its ID
   const deleteTaskById = (id) => {
     const updatedTasks = tasks.filter((task) => {
       return task.id !== id;
@@ -47,6 +41,7 @@ function App() {
     setTasks(updatedTasks);
   };
 
+  //Edits a task by its ID
   const editTaskById = (id, newTitle) => {
     const updatedTasks = tasks.map((task) => {
       if (task.id === id) {
@@ -57,13 +52,18 @@ function App() {
     setTasks(updatedTasks);
   };
 
+  //Clears all tasks in the array
   const handleClearAllTasks = () => {
     setTasks([]);
   };
 
-  const filterList = filterKeys.map((name) => {
-    return <TaskFilter className="task-section-button" />;
-  });
+  //Clears all completed tasks in the array
+  const handleClearCompleteTasks = () => {
+    const updatedTasks = tasks.filter((task) => {
+      return !task.completed;
+    });
+    setTasks(updatedTasks);
+  };
 
   return (
     <div className="App">
@@ -74,8 +74,10 @@ function App() {
         onEdit={editTaskById}
         onComplete={completeTaskById}
         onClear={handleClearAllTasks}
+        onClearComplete={handleClearCompleteTasks}
+        filter={filter}
+        setFilter={setFilter}
       />
-      {filterList}
     </div>
   );
 }

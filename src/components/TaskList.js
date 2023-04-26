@@ -2,17 +2,31 @@ import TaskShow from "./TaskShow";
 import TaskFilter from "./TaskFilter";
 import "./TaskList.css";
 import { useState } from "react";
+
+//Creating an array of functions to filter through task types
+const filterTypes = {
+  All: () => true,
+  Active: (task) => !task.completed,
+  Completed: (task) => task.completed,
+};
+
+//Assigning the filterTypes to an array of objects
+const filterKeys = Object.keys(filterTypes);
+
 export default function TaskList({
   tasks,
   onDelete,
   onEdit,
   onComplete,
   onClear,
+  filter,
+  setFilter,
+  onClearComplete,
 }) {
-  const [title, setTitle] = useState("All Tasks");
+  const [title, setTitle] = useState("All");
 
   //Using map to iterate through tasks and return a TaskShow component for each
-  const allTasks = tasks.map((task) => {
+  const allTasks = tasks.filter(filterTypes[filter]).map((task) => {
     return (
       <TaskShow
         key={task.id}
@@ -24,44 +38,34 @@ export default function TaskList({
     );
   });
 
-  const handleAllButton = () => {
-    setTitle("All Tasks");
-  };
-  const handleCompleteButton = () => {
-    setTitle("Completed Tasks");
-  };
-  const handleToDoButton = () => {
-    setTitle("To Do Tasks");
-  };
+  //mapping through the filterKeys array to generate the TaskFilter component for each key
+  const filterList = filterKeys.map((name) => {
+    return (
+      <TaskFilter
+        className="task-section-button"
+        key={name}
+        name={name}
+        setFilter={setFilter}
+        setTitle={setTitle}
+      />
+    );
+  });
 
-  //Need to switch between the 3 lists, need to render another 2 lists
   return (
     <div className="task-list">
       {tasks.length > 0 ? (
         <div>
-          <h3 className="task-title">{title}</h3>
-          <div className="task-section">
-            <button className="task-section-button" onClick={handleAllButton}>
-              All
-            </button>
-            <button
-              className="task-section-button"
-              onClick={handleCompleteButton}
-            >
-              Completed
-            </button>
-            <button className="task-section-button" onClick={handleToDoButton}>
-              To Do
-            </button>
-          </div>
+          <h3 className="task-title">{title} Tasks</h3>
+          <div className="task-filter">{filterList}</div>
           <div>{allTasks}</div>
-
           <div>
             <div className="task-clear-wrapper">
               <button className="task-clear" onClick={onClear}>
-                Clear Tasks
+                Clear All Tasks
               </button>
-              <TaskFilter />
+              <button className="task-clear" onClick={onClearComplete}>
+                Clear Completed Tasks
+              </button>
             </div>
           </div>
         </div>

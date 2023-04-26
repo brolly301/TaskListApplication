@@ -1,7 +1,16 @@
-export default function TaskFilter() {
+export default function TaskFilter({ name, setFilter, setTitle }) {
+  //Sets the filter value based on the button click
+  const handleClick = () => {
+    setFilter(name);
+    setTitle(name);
+  };
+
   return (
-    <button type="button" className=" task-section-button" aria-pressed="true">
-      Show All Tasks
+    <button
+      onClick={handleClick}
+      type="button"
+      className=" task-section-button">
+      {name}
     </button>
   );
 }
