@@ -65,6 +65,7 @@ function App() {
     setTasks(updatedTasks);
   };
 
+  fibonacciSequence();
   return (
     <div className="App">
       <TaskCreate onCreate={createTasks} />
