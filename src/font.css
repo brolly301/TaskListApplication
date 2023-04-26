@@ -18,13 +18,5 @@ body {
 .task-clear-wrapper {
   display: flex;
   width: 410px;
-
   margin: 0 auto;
-}
-
-.task-filter {
-  display: flex;
-  justify-content: space-around;
-  margin: 0 auto;
-  margin-top: 10px;
 }
