@@ -32,7 +32,7 @@ export default function TaskList({
   const allTasks = tasks
     .filter(filterTypes[filter])
     .filter(function (task) {
-      return task.title.match(searchResult);
+      return task.title.toLowerCase().includes(searchResult);
     })
     .map((task) => {
       return (
