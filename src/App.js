@@ -66,7 +66,7 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className="app">
       <TaskCreate onCreate={createTasks} />
       <TaskList
         tasks={tasks}

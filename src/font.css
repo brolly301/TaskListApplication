@@ -2,21 +2,40 @@
 
 body {
   font-family: "Roboto";
+  background-color: #577d86;
 }
 
 .task-clear {
   width: 100%;
-  background-color: rgb(240, 65, 59);
-  color: white;
+  background-color: #304949a2;
+  color: rgb(255, 255, 255);
   padding-top: 7px;
   padding-bottom: 7px;
   border-radius: 5px;
   margin-left: 5px;
+  border: solid 0.5mm black;
   margin-top: 15px;
+  font-weight: bolder;
+  font-size: 13px;
+}
+
+.task-clear:hover {
+  background-color: #e05037;
 }
 
 .task-clear-wrapper {
   display: flex;
   width: 410px;
   margin: 0 auto;
+}
+
+.app {
+  background-color: #569daa;
+  width: 660px;
+  border: solid 2px black;
+  height: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }

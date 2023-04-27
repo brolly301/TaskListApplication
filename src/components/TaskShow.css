@@ -2,15 +2,11 @@
   max-height: 500px;
   width: 410px;
   height: 40px;
-  background-color: rgba(203, 247, 255, 0.479);
+  background-color: #b1dbdb;
   border: 1px solid black;
   margin-top: 10px;
   display: flex;
   align-items: center;
-}
-
-.task-content:nth-of-type(even) {
-  background-color: rgba(184, 239, 248, 0.479);
 }
 
 .task-complete-content {
