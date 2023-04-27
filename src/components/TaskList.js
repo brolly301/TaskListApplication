@@ -1,5 +1,6 @@
 import TaskShow from "./TaskShow";
 import TaskFilter from "./TaskFilter";
+import TaskSearch from "./TaskSearch";
 import "./TaskList.css";
 import { useState } from "react";
 
@@ -26,10 +27,11 @@ export default function TaskList({
   const [title, setTitle] = useState("All");
   const [searchResult, setSearchResult] = useState("");
 
-  //Using map to iterate through tasks and return a TaskShow component for each
+  //Filter to chnage between completed and active tasks, then also filtering for search results and
+  //using map to iterate through tasks and return a TaskShow component for each
   const allTasks = tasks
     .filter(filterTypes[filter])
-    .filter((task) => {
+    .filter(function (task) {
       return task.title.match(searchResult);
     })
     .map((task) => {
@@ -57,27 +59,6 @@ export default function TaskList({
     );
   });
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-  };
-
-  const handleChange = (e) => {
-    setSearchResult(e.target.value);
-  };
-  let searches = (
-    <div className="task-search-wrapper">
-      <form onSubmit={handleSubmit}>
-        <input
-          className="task-search"
-          type="text"
-          value={searchResult}
-          onChange={handleChange}
-          placeholder="Search for a task..."
-        />
-      </form>
-    </div>
-  );
-
   return (
     <div className="task-list">
       {tasks.length > 0 ? (
@@ -85,7 +66,10 @@ export default function TaskList({
           <h3 className="task-title">{title} Tasks</h3>
           <div className="task-filter">{filterList}</div>
           <div>{allTasks}</div>
-          {searches}
+          <TaskSearch
+            searchResult={searchResult}
+            setSearchResult={setSearchResult}
+          />
           <div>
             <div className="task-clear-wrapper">
               <button className="task-clear" onClick={onClear}>

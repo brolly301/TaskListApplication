@@ -1,26 +1,19 @@
-import { useState } from "react";
+import "./TaskSearch.css";
 
-export default function TaskSearch({ tasks }) {
-  const [searchResult, setSearchResult] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const results = tasks.filter((task) => {
-      return task.title.match(searchResult);
-    });
-    console.log(results);
-  };
-
+export default function TaskSearch({ searchResult, setSearchResult }) {
   const handleChange = (e) => {
     setSearchResult(e.target.value);
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input type="text" value={searchResult} onChange={handleChange} />
-        <button>Search Tasks</button>
-      </form>
+    <div className="task-search-wrapper">
+      <input
+        className="task-search"
+        type="text"
+        value={searchResult}
+        onChange={handleChange}
+        placeholder="Search for a task..."
+      />
     </div>
   );
 }
